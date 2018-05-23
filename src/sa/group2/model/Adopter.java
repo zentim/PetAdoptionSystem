@@ -8,35 +8,61 @@ import javafx.beans.property.StringProperty;
 import java.time.LocalDate;
 
 public class Adopter {
+    private final StringProperty adoptingPet;
+    private final StringProperty id;
     private final StringProperty name;
     private final StringProperty email;
     private final ObjectProperty<LocalDate> birthday;
     private final StringProperty phone;
     private final StringProperty idCardNumber;
     private final StringProperty incomeProof;
-    private final StringProperty apponintmentTime;
-
-
+    private final StringProperty appointmentTime;
 
     public Adopter() {
         this(null, null);
     }
 
-    public Adopter(String name, String email) {
+    public Adopter(String id, String name) {
+        this.adoptingPet = new SimpleStringProperty("");
+        this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.email = new SimpleStringProperty(email);
+        this.email = new SimpleStringProperty("");
 
         // Some initial dummy data, just for testing.
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.phone = new SimpleStringProperty("09xxxxxxxx");
         this.idCardNumber = new SimpleStringProperty("P123xxxxxx");
         this.incomeProof = new SimpleStringProperty("some income of proof");
-        this.apponintmentTime = new SimpleStringProperty("YYYY/MM/DD");
+        this.appointmentTime = new SimpleStringProperty("YYYY/MM/DD");
     }
 
     /*
     Getter and Setter
      */
+
+    public String getAdoptingPet() {
+        return adoptingPet.get();
+    }
+
+    public StringProperty adoptingPetProperty() {
+        return adoptingPet;
+    }
+
+    public void setAdoptingPet(String adoptingPet) {
+        this.adoptingPet.set(adoptingPet);
+    }
+
+    public String getId() {
+        return id.get();
+    }
+
+    public StringProperty idProperty() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id.set(id);
+    }
 
     public String getName() {
         return name.get();
@@ -110,15 +136,15 @@ public class Adopter {
         this.incomeProof.set(incomeProof);
     }
 
-    public String getApponintmentTime() {
-        return apponintmentTime.get();
+    public String getAppointmentTime() {
+        return appointmentTime.get();
     }
 
-    public StringProperty apponintmentTimeProperty() {
-        return apponintmentTime;
+    public StringProperty appointmentTimeProperty() {
+        return appointmentTime;
     }
 
-    public void setApponintmentTime(String apponintmentTime) {
-        this.apponintmentTime.set(apponintmentTime);
+    public void setAppointmentTime(String appointmentTime) {
+        this.appointmentTime.set(appointmentTime);
     }
 }

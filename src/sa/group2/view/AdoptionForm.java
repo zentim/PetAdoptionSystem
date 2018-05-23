@@ -10,7 +10,7 @@ import sa.group2.model.Adopter;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
 
-public class AdoptionFormController {
+public class AdoptionForm {
     @FXML
     private Label petNameLabel;
     @FXML
@@ -74,13 +74,14 @@ public class AdoptionFormController {
     @FXML
     private void handleOk() {
         if (isInputValid()) {
+            adopter.setAdoptingPet(pet.getPid());
             adopter.setName(nameField.getText());
             adopter.setBirthday(DateUtil.parse(birthdayField.getText()));
             adopter.setEmail(emailField.getText());
             adopter.setPhone(phoneField.getText());
             adopter.setIdCardNumber(idCardNumberField.getText());
             adopter.setIncomeProof(incomeProofField.getText());
-            adopter.setApponintmentTime(appointmentTimeField.getText());
+            adopter.setAppointmentTime(appointmentTimeField.getText());
 
             okClicked = true;
             dialogStage.close();

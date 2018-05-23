@@ -1,15 +1,15 @@
 package sa.group2.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import sa.group2.MainApp;
+import sa.group2.model.Adopter;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
 
-public class PetOverviewController {
+public class ManageGUI {
     @FXML
     private TableView<Pet> petTable;
     @FXML
@@ -25,6 +25,18 @@ public class PetOverviewController {
     private Label breedLabel;
     @FXML
     private Label birthdayLabel;
+
+    @FXML
+    private TableView<Adopter> adopterTable;
+    @FXML
+    private TableColumn<Adopter, String> adopterIdColumn;
+    @FXML
+    private TableColumn<Adopter, String> adopterNameColumn;
+
+    @FXML
+    private Label adopterIdLabel;
+    @FXML
+    private Label adopterNameLabel;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -47,6 +59,20 @@ public class PetOverviewController {
         // Listen for selection changes and show the pet details when changed.
         petTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> showPetDetails(newValue));
+
+
+        // Initialize the pet table with the two columns.
+        adopterIdColumn.setCellValueFactory(
+                cellData -> cellData.getValue().idProperty());
+        adopterNameColumn.setCellValueFactory(
+                cellData -> cellData.getValue().nameProperty());
+
+        // Clear pet details.
+        showAdopterDetails(null);
+
+        // Listen for selection changes and show the pet details when changed.
+        adopterTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showAdopterDetails(newValue));
     }
 
     /**
@@ -58,7 +84,10 @@ public class PetOverviewController {
         this.mainApp = mainApp;
 
         // Add observable list data to the table
-        petTable.setItems(mainApp.getPetData());
+        petTable.setItems(mainApp.getPetList());
+
+        adopterTable.setItems(mainApp.getAdopterList());
+
     }
 
     /**
@@ -73,7 +102,6 @@ public class PetOverviewController {
             pidLabel.setText(pet.getPid());
             nameLabel.setText(pet.getName());
             breedLabel.setText(pet.getBreed());
-
             birthdayLabel.setText(DateUtil.format(pet.getBirthday()));
         } else {
             // pet is null, remove all the text.
@@ -85,28 +113,16 @@ public class PetOverviewController {
         }
     }
 
-    /**
-     * Called when the user clicks the adopt button. Opens a dialog to fill in adopter's
-     * information for the selected pet.
-     */
-    @FXML
-    private void handleAdoptPet() {
-        Pet selectedPet = petTable.getSelectionModel().getSelectedItem();
-        if (selectedPet != null) {
-            boolean okClicked = mainApp.showAdoptionForm(selectedPet);
-            if (okClicked) {
-                showPetDetails(selectedPet);
-            }
+    private void showAdopterDetails(Adopter adopter) {
+        if (adopter != null) {
+            // Fill the labels with info from the adopter object.
+            adopterIdLabel.setText(adopter.getId());
+            adopterNameLabel.setText(adopter.getName());
 
         } else {
-            // Nothing selected.
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-//            alert.initOwner(mainApp.getPrimaryStage());
-            alert.setTitle("No Selection");
-            alert.setHeaderText("No Person Selected");
-            alert.setContentText("Please select a person in the table.");
-
-            alert.showAndWait();
+            // adopter is null, remove all the text.
+            adopterIdLabel.setText("");
+            adopterNameLabel.setText("");
         }
     }
 }

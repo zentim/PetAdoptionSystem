@@ -12,7 +12,6 @@ public class Pet {
 
     public Pet() {
         this(null, null);
-
     }
 
     public Pet(String pid, String name) {
