@@ -2,6 +2,7 @@ package sa.group2.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -19,7 +20,7 @@ public class AdoptionForm {
     @FXML
     private TextField nameField;
     @FXML
-    private TextField birthdayField;
+    private DatePicker birthdayField;
     @FXML
     private TextField emailField;
     @FXML
@@ -29,7 +30,7 @@ public class AdoptionForm {
     @FXML
     private TextField incomeProofField;
     @FXML
-    private TextField appointmentTimeField;
+    private DatePicker appointmentTimeField;
 
     private Stage dialogStage;
     private Pet pet;
@@ -49,7 +50,7 @@ public class AdoptionForm {
         this.adopter = adopter;
 
         nameField.setText(adopter.getName());
-        emailField.setText(adopter.getEmail());
+
     }
 
     public void setPet(Pet pet) {
@@ -76,12 +77,12 @@ public class AdoptionForm {
         if (isInputValid()) {
             adopter.setAdoptingPet(pet.getPid());
             adopter.setName(nameField.getText());
-            adopter.setBirthday(DateUtil.parse(birthdayField.getText()));
+            adopter.setAdopterBirthday(DateUtil.parse(birthdayField.getValue().toString()));
             adopter.setEmail(emailField.getText());
             adopter.setPhone(phoneField.getText());
             adopter.setIdCardNumber(idCardNumberField.getText());
             adopter.setIncomeProof(incomeProofField.getText());
-            adopter.setAppointmentTime(appointmentTimeField.getText());
+            adopter.setAppointmentTime(DateUtil.parse(appointmentTimeField.getValue().toString()));
 
             okClicked = true;
             dialogStage.close();
@@ -108,11 +109,11 @@ public class AdoptionForm {
             errorMessage += "No valid name!\n";
         }
 
-        if (birthdayField.getText() == null || birthdayField.getText().length() == 0) {
+        if (birthdayField.getValue() == null) {
             errorMessage += "No valid birthday!\n";
         } else {
-            if (!DateUtil.validDate(birthdayField.getText())) {
-                errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(birthdayField.getValue().toString())) {
+                errorMessage += birthdayField.getValue().toString() + "No valid birthday. Use the format yyyy-MM-dd!\n";
             }
         }
 
@@ -124,17 +125,20 @@ public class AdoptionForm {
         }
 
         if (idCardNumberField.getText() == null || idCardNumberField.getText().length() == 0) {
-            errorMessage += "No valid idCardNumberField!\n";
+            errorMessage += "No valid idCardNumber!\n";
         }
 
         if (incomeProofField.getText() == null || incomeProofField.getText().length() == 0) {
-            errorMessage += "No valid incomeProofField!\n";
+            errorMessage += "No valid incomeProof!\n";
         }
 
-        if (appointmentTimeField.getText() == null || appointmentTimeField.getText().length() == 0) {
-            errorMessage += "No valid appointmentTimeField!\n";
+        if (appointmentTimeField.getValue() == null) {
+            errorMessage += "No valid appointmentTime!\n";
+        } else {
+            if (!DateUtil.validDate(appointmentTimeField.getValue().toString())) {
+                errorMessage += "No valid appointmentTime. Use the format yyyy-MM-dd!\n";
+            }
         }
-
 
         if (errorMessage.length() == 0) {
             return true;

@@ -62,10 +62,10 @@ public class MainApp extends Application {
      */
     public MainApp() {
         // Add some sample data
-        petList.add(new Pet("pid001", "Hans"));
-        petList.add(new Pet("pid002", "Ruth"));
+        petList.add(new Pet("P001", "Hans"));
+        petList.add(new Pet("P002", "Ruth"));
 
-        adopterList.add(new Adopter("someId", "someone"));
+        adopterList.add(new Adopter("A001", "Mark"));
     }
 
     public ObservableList<Pet> getPetList() {

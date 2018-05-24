@@ -20,7 +20,7 @@ public class ManageGUI {
     private TableColumn<Pet, String> nameColumn;
 
     @FXML
-    private Label pidLabel;
+    private Label petIDLabel;
     @FXML
     private Label nameLabel;
     @FXML
@@ -80,7 +80,7 @@ public class ManageGUI {
 
         // Initialize the pet table with the two columns.
         adopterIdColumn.setCellValueFactory(
-                cellData -> cellData.getValue().idProperty());
+                cellData -> cellData.getValue().adopterIDProperty());
         adoptionStatusColumn.setCellValueFactory(
                 cellData -> cellData.getValue().adoptionStatusProperty());
 
@@ -116,13 +116,13 @@ public class ManageGUI {
     private void showPetDetails(Pet pet) {
         if (pet != null) {
             // Fill the labels with info from the pet object.
-            pidLabel.setText(pet.getPid());
+            petIDLabel.setText(pet.getPid());
             nameLabel.setText(pet.getName());
             breedLabel.setText(pet.getBreed());
-            birthdayLabel.setText(DateUtil.format(pet.getBirthday()));
+            birthdayLabel.setText(pet.getBirthday().toString());
         } else {
             // pet is null, remove all the text.
-            pidLabel.setText("");
+            petIDLabel.setText("");
             nameLabel.setText("");
             breedLabel.setText("");
             birthdayLabel.setText("");
@@ -133,14 +133,14 @@ public class ManageGUI {
         if (adopter != null) {
             // Fill the labels with info from the adopter object.
             adoptingPetLabel.setText(adopter.getAdoptingPet());
-            adopterIdLabel.setText(adopter.getId());
+            adopterIdLabel.setText(adopter.getAdopterID());
             adopterNameLabel.setText(adopter.getName());
             emailLabel.setText(adopter.getEmail());
-            adopterBirthdayLabel.setText(DateUtil.format(adopter.getBirthday()));
+            adopterBirthdayLabel.setText(DateUtil.format(adopter.getAdopterBirthday()));
             phoneLabel.setText(adopter.getPhone());
             idCardNumberLabel.setText(adopter.getIdCardNumber());
             incomeProofLabel.setText(adopter.getIncomeProof());
-            appointmentTimeLabel.setText(adopter.getAppointmentTime());
+            appointmentTimeLabel.setText(DateUtil.format(adopter.getAppointmentTime()));
         } else {
             // adopter is null, remove all the text.
             adoptingPetLabel.setText("");

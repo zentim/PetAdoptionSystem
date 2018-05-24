@@ -9,30 +9,30 @@ import java.time.LocalDate;
 
 public class Adopter {
     private final StringProperty adoptingPet;
-    private final StringProperty id;
+    private final StringProperty adopterID;
     private final StringProperty name;
     private final StringProperty email;
-    private final ObjectProperty<LocalDate> birthday;
+    private final ObjectProperty<LocalDate> adopterBirthday;
     private final StringProperty phone;
     private final StringProperty idCardNumber;
     private final StringProperty incomeProof;
-    private final StringProperty appointmentTime;
+    private final ObjectProperty<LocalDate> appointmentTime;
     private final StringProperty adoptionStatus;
 
     public Adopter() {
         this(null, null);
     }
 
-    public Adopter(String id, String name) {
-        this.adoptingPet = new SimpleStringProperty("one pet's id");
-        this.id = new SimpleStringProperty(id);
+    public Adopter(String adopterID, String name) {
+        this.adoptingPet = new SimpleStringProperty("PXXX");
+        this.adopterID = new SimpleStringProperty(adopterID);
         this.name = new SimpleStringProperty(name);
-        this.email = new SimpleStringProperty("xxxx@gmail.com");
-        this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
+        this.email = new SimpleStringProperty("xxxxx@gmail.com");
+        this.adopterBirthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.phone = new SimpleStringProperty("09xxxxxxxx");
         this.idCardNumber = new SimpleStringProperty("P123xxxxxx");
         this.incomeProof = new SimpleStringProperty("some income of proof");
-        this.appointmentTime = new SimpleStringProperty("YYYY/MM/DD");
+        this.appointmentTime = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.adoptionStatus = new SimpleStringProperty("Not verified");
     }
 
@@ -52,16 +52,16 @@ public class Adopter {
         this.adoptingPet.set(adoptingPet);
     }
 
-    public String getId() {
-        return id.get();
+    public String getAdopterID() {
+        return adopterID.get();
     }
 
-    public StringProperty idProperty() {
-        return id;
+    public StringProperty adopterIDProperty() {
+        return adopterID;
     }
 
-    public void setId(String id) {
-        this.id.set(id);
+    public void setAdopterID(String adopterID) {
+        this.adopterID.set(adopterID);
     }
 
     public String getName() {
@@ -88,16 +88,16 @@ public class Adopter {
         this.email.set(email);
     }
 
-    public LocalDate getBirthday() {
-        return birthday.get();
+    public LocalDate getAdopterBirthday() {
+        return adopterBirthday.get();
     }
 
-    public ObjectProperty<LocalDate> birthdayProperty() {
-        return birthday;
+    public ObjectProperty<LocalDate> adopterBirthdayProperty() {
+        return adopterBirthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
-        this.birthday.set(birthday);
+    public void setAdopterBirthday(LocalDate adopterBirthday) {
+        this.adopterBirthday.set(adopterBirthday);
     }
 
     public String getPhone() {
@@ -136,15 +136,15 @@ public class Adopter {
         this.incomeProof.set(incomeProof);
     }
 
-    public String getAppointmentTime() {
+    public LocalDate getAppointmentTime() {
         return appointmentTime.get();
     }
 
-    public StringProperty appointmentTimeProperty() {
+    public ObjectProperty<LocalDate> appointmentTimeProperty() {
         return appointmentTime;
     }
 
-    public void setAppointmentTime(String appointmentTime) {
+    public void setAppointmentTime(LocalDate appointmentTime) {
         this.appointmentTime.set(appointmentTime);
     }
 

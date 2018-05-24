@@ -2,6 +2,7 @@ package sa.group2.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -16,7 +17,7 @@ public class PetEditDialog {
     @FXML
     private TextField petBreedField;
     @FXML
-    private TextField petBirthdayField;
+    private DatePicker petBirthdayField;
 
 
     private Stage dialogStage;
@@ -50,8 +51,8 @@ public class PetEditDialog {
         pidLabel.setText(pet.getPid());
         petNameField.setText(pet.getName());
         petBreedField.setText(pet.getBreed());
-        petBirthdayField.setText(DateUtil.format(pet.getBirthday()));
-        petBirthdayField.setPromptText("dd.mm.yyyy");
+        petBirthdayField.setValue(pet.getBirthday());
+        petBirthdayField.setPromptText("yyyy-mm-dd");
     }
 
     /**
@@ -71,7 +72,7 @@ public class PetEditDialog {
         if (isInputValid()) {
             pet.setName(petNameField.getText());
             pet.setBreed(petBreedField.getText());
-            pet.setBirthday(DateUtil.parse(petBirthdayField.getText()));
+            pet.setBirthday(petBirthdayField.getValue());
 
             okClicked = true;
             dialogStage.close();
@@ -101,11 +102,11 @@ public class PetEditDialog {
             errorMessage += "No valid pet's breed!\n";
         }
 
-        if (petBirthdayField.getText() == null || petBirthdayField.getText().length() == 0) {
+        if (petBirthdayField.getValue() == null || petBirthdayField.getValue().toString().length() == 0) {
             errorMessage += "No valid birthday!\n";
         } else {
-            if (!DateUtil.validDate(petBirthdayField.getText())) {
-                errorMessage += "No valid birthday. Use the format dd.mm.yyyy!\n";
+            if (!DateUtil.validDate(petBirthdayField.getValue().toString())) {
+                errorMessage += "No valid birthday. Use the format yyyy-mm-dd!\n";
             }
         }
 
