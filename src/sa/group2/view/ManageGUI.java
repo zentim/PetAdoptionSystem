@@ -1,6 +1,7 @@
 package sa.group2.view;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -10,6 +11,7 @@ import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
 
 public class ManageGUI {
+    // Pet
     @FXML
     private TableView<Pet> petTable;
     @FXML
@@ -26,6 +28,7 @@ public class ManageGUI {
     @FXML
     private Label birthdayLabel;
 
+    // Adopter
     @FXML
     private TableView<Adopter> adopterTable;
     @FXML
@@ -34,9 +37,23 @@ public class ManageGUI {
     private TableColumn<Adopter, String> adopterNameColumn;
 
     @FXML
+    private Label adoptingPetLabel;
+    @FXML
     private Label adopterIdLabel;
     @FXML
     private Label adopterNameLabel;
+    @FXML
+    private Label emailLabel;
+    @FXML
+    private Label adopterBirthdayLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Label idCardNumberLabel;
+    @FXML
+    private Label incomeProofLabel;
+    @FXML
+    private Label appointmentTimeLabel;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -108,7 +125,6 @@ public class ManageGUI {
             pidLabel.setText("");
             nameLabel.setText("");
             breedLabel.setText("");
-
             birthdayLabel.setText("");
         }
     }
@@ -116,13 +132,84 @@ public class ManageGUI {
     private void showAdopterDetails(Adopter adopter) {
         if (adopter != null) {
             // Fill the labels with info from the adopter object.
+            adoptingPetLabel.setText(adopter.getAdoptingPet());
             adopterIdLabel.setText(adopter.getId());
             adopterNameLabel.setText(adopter.getName());
-
+            emailLabel.setText(adopter.getEmail());
+            adopterBirthdayLabel.setText(DateUtil.format(adopter.getBirthday()));
+            phoneLabel.setText(adopter.getPhone());
+            idCardNumberLabel.setText(adopter.getIdCardNumber());
+            incomeProofLabel.setText(adopter.getIncomeProof());
+            appointmentTimeLabel.setText(adopter.getAppointmentTime());
         } else {
             // adopter is null, remove all the text.
+            adoptingPetLabel.setText("");
             adopterIdLabel.setText("");
             adopterNameLabel.setText("");
+            emailLabel.setText("");
+            adopterBirthdayLabel.setText("");
+            phoneLabel.setText("");
+            idCardNumberLabel.setText("");
+            incomeProofLabel.setText("");
+            appointmentTimeLabel.setText("");
         }
     }
+
+    /**
+     * Called when the user clicks the new button. Opens a dialog to edit
+     * details for a new person.
+     */
+    @FXML
+    private void handleNewPet() {
+        Pet tempPet = new Pet();
+        boolean okClicked = mainApp.showPetEditDialog(tempPet);
+        if (okClicked) {
+            mainApp.getPetList().add(tempPet);
+        }
+    }
+
+    /**
+     * Called when the user clicks the edit button. Opens a dialog to edit
+     * details for the selected person.
+     */
+    @FXML
+    private void handleEditPet() {
+        Pet selectedPet = petTable.getSelectionModel().getSelectedItem();
+        if (selectedPet != null) {
+            boolean okClicked = mainApp.showPetEditDialog(selectedPet);
+            if (okClicked) {
+                showPetDetails(selectedPet);
+            }
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Pet Selected");
+            alert.setContentText("Please select a person in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
+    /**
+     * Called when the user clicks on the delete button.
+     */
+    @FXML
+    private void handleDeletePet() {
+        int selectedIndex = petTable.getSelectionModel().getSelectedIndex();
+        if (selectedIndex >= 0) {
+            petTable.getItems().remove(selectedIndex);
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Pet Selected");
+            alert.setContentText("Please select a pet in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
 }

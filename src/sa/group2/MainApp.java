@@ -15,6 +15,7 @@ import sa.group2.model.Adopter;
 import sa.group2.model.Pet;
 import sa.group2.view.AdoptionForm;
 import sa.group2.view.ManageGUI;
+import sa.group2.view.PetEditDialog;
 import sa.group2.view.PetOverview;
 
 import java.io.IOException;
@@ -159,5 +160,44 @@ public class MainApp extends Application {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean showPetEditDialog(Pet pet) {
+        try {
+            // Load the fxml file and create a new stage for the popup dialog.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("view/PetEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Create the dialog Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Person");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Set the person into the controller.
+            PetEditDialog controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setPet(pet);
+
+            // Show the dialog and wait until the user closes it
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+    /**
+     * Returns the main stage.
+     * @return
+     */
+    public Stage getPrimaryStage() {
+        return primaryStage;
     }
 }
