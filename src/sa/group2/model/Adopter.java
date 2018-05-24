@@ -17,23 +17,23 @@ public class Adopter {
     private final StringProperty idCardNumber;
     private final StringProperty incomeProof;
     private final StringProperty appointmentTime;
+    private final StringProperty adoptionStatus;
 
     public Adopter() {
         this(null, null);
     }
 
     public Adopter(String id, String name) {
-        this.adoptingPet = new SimpleStringProperty("");
+        this.adoptingPet = new SimpleStringProperty("one pet's id");
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
-        this.email = new SimpleStringProperty("");
-
-        // Some initial dummy data, just for testing.
+        this.email = new SimpleStringProperty("xxxx@gmail.com");
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.phone = new SimpleStringProperty("09xxxxxxxx");
         this.idCardNumber = new SimpleStringProperty("P123xxxxxx");
         this.incomeProof = new SimpleStringProperty("some income of proof");
         this.appointmentTime = new SimpleStringProperty("YYYY/MM/DD");
+        this.adoptionStatus = new SimpleStringProperty("Not verified");
     }
 
     /*
@@ -146,5 +146,17 @@ public class Adopter {
 
     public void setAppointmentTime(String appointmentTime) {
         this.appointmentTime.set(appointmentTime);
+    }
+
+    public String getAdoptionStatus() {
+        return adoptionStatus.get();
+    }
+
+    public StringProperty adoptionStatusProperty() {
+        return adoptionStatus;
+    }
+
+    public void setAdoptionStatus(String adoptionStatus) {
+        this.adoptionStatus.set(adoptionStatus);
     }
 }

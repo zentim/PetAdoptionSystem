@@ -34,7 +34,7 @@ public class ManageGUI {
     @FXML
     private TableColumn<Adopter, String> adopterIdColumn;
     @FXML
-    private TableColumn<Adopter, String> adopterNameColumn;
+    private TableColumn<Adopter, String> adoptionStatusColumn;
 
     @FXML
     private Label adoptingPetLabel;
@@ -81,8 +81,8 @@ public class ManageGUI {
         // Initialize the pet table with the two columns.
         adopterIdColumn.setCellValueFactory(
                 cellData -> cellData.getValue().idProperty());
-        adopterNameColumn.setCellValueFactory(
-                cellData -> cellData.getValue().nameProperty());
+        adoptionStatusColumn.setCellValueFactory(
+                cellData -> cellData.getValue().adoptionStatusProperty());
 
         // Clear pet details.
         showAdopterDetails(null);
@@ -186,7 +186,7 @@ public class ManageGUI {
 //            alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("No Selection");
             alert.setHeaderText("No Pet Selected");
-            alert.setContentText("Please select a person in the table.");
+            alert.setContentText("Please select a pet in the table.");
 
             alert.showAndWait();
         }
@@ -207,6 +207,40 @@ public class ManageGUI {
             alert.setTitle("No Selection");
             alert.setHeaderText("No Pet Selected");
             alert.setContentText("Please select a pet in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleVerifySucess() {
+        Adopter selectedAdopter = adopterTable.getSelectionModel().getSelectedItem();
+        if (selectedAdopter != null) {
+            selectedAdopter.setAdoptionStatus("success");
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Adopter Selected");
+            alert.setContentText("Please select a Adopter in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void handleVerifyFail() {
+        Adopter selectedAdopter = adopterTable.getSelectionModel().getSelectedItem();
+        if (selectedAdopter != null) {
+            selectedAdopter.setAdoptionStatus("fail");
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Adopter Selected");
+            alert.setContentText("Please select a Adopter in the table.");
 
             alert.showAndWait();
         }
