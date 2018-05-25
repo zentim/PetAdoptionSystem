@@ -27,6 +27,8 @@ public class ManageGUI {
     private Label breedLabel;
     @FXML
     private Label birthdayLabel;
+    @FXML
+    private Label petRankLabel;
 
     // Adopter
     @FXML
@@ -120,12 +122,14 @@ public class ManageGUI {
             nameLabel.setText(pet.getName());
             breedLabel.setText(pet.getBreed());
             birthdayLabel.setText(pet.getBirthday().toString());
+            petRankLabel.setText(pet.getPetRankDescription());
         } else {
             // pet is null, remove all the text.
             petIDLabel.setText("");
             nameLabel.setText("");
             breedLabel.setText("");
             birthdayLabel.setText("");
+            petRankLabel.setText("");
         }
     }
 

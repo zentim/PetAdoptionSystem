@@ -41,6 +41,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Label text="PID" />
@@ -51,6 +52,8 @@
                   <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="breedLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="birthdayLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="Pet Rank" GridPane.rowIndex="4" />
+                  <Label fx:id="petRankLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
             <Button layoutX="268.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAdoptPet" text="I want to adpot" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">

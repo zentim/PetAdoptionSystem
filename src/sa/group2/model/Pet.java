@@ -9,6 +9,7 @@ public class Pet {
     private final StringProperty name;
     private final StringProperty breed;
     private final ObjectProperty<LocalDate> birthday;
+    private final IntegerProperty petRank;
 
     public Pet() {
         this(null, null);
@@ -21,22 +22,37 @@ public class Pet {
         // Some initial dummy data, just for testing.
         this.breed = new SimpleStringProperty("some breed");
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
+        this.petRank = new SimpleIntegerProperty(0);
+    }
+
+    // pet rank description
+    public String getPetRankDescription() {
+        int rank = Integer.parseInt(this.petRank.getValue().toString());
+        String description = "";
+
+        switch (rank) {
+            case 0:
+                description = "no adoption fee";
+                break;
+            case 1:
+                description = "需要預防針500";
+                break;
+            case 2:
+                description = "需要預防針500 + 結紮1000";
+                break;
+            case 3:
+                description = "需要預防針500 + 結紮1000 + 晶片500";
+                break;
+            default:
+                description = "not valid pet rank";
+        }
+
+        return description;
     }
 
     /*
     Getter and Setter
      */
-    public String getName() {
-        return name.get();
-    }
-
-    public StringProperty nameProperty() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name.set(name);
-    }
 
     public String getPid() {
         return pid.get();
@@ -48,6 +64,18 @@ public class Pet {
 
     public void setPid(String pid) {
         this.pid.set(pid);
+    }
+
+    public String getName() {
+        return name.get();
+    }
+
+    public StringProperty nameProperty() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name.set(name);
     }
 
     public String getBreed() {
@@ -72,5 +100,17 @@ public class Pet {
 
     public void setBirthday(LocalDate birthday) {
         this.birthday.set(birthday);
+    }
+
+    public int getPetRank() {
+        return petRank.get();
+    }
+
+    public IntegerProperty petRankProperty() {
+        return petRank;
+    }
+
+    public void setPetRank(int petRank) {
+        this.petRank.set(petRank);
     }
 }

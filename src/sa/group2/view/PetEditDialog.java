@@ -1,10 +1,9 @@
 package sa.group2.view;
 
+import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
@@ -18,6 +17,8 @@ public class PetEditDialog {
     private TextField petBreedField;
     @FXML
     private DatePicker petBirthdayField;
+    @FXML
+    private ChoiceBox petRankChoiceBox;
 
 
     private Stage dialogStage;
@@ -30,6 +31,12 @@ public class PetEditDialog {
      */
     @FXML
     private void initialize() {
+        petRankChoiceBox.setItems(FXCollections.observableArrayList(
+                "no adoption fee",
+                "需要預防針500",
+                "需要預防針500 + 結紮1000",
+                "需要預防針500 + 結紮1000 + 晶片500"
+        ));
     }
 
     /**
@@ -53,6 +60,7 @@ public class PetEditDialog {
         petBreedField.setText(pet.getBreed());
         petBirthdayField.setValue(pet.getBirthday());
         petBirthdayField.setPromptText("yyyy-mm-dd");
+        petRankChoiceBox.getSelectionModel().select(pet.getPetRank());
     }
 
     /**
@@ -73,7 +81,7 @@ public class PetEditDialog {
             pet.setName(petNameField.getText());
             pet.setBreed(petBreedField.getText());
             pet.setBirthday(petBirthdayField.getValue());
-
+            pet.setPetRank(petRankChoiceBox.getSelectionModel().selectedIndexProperty().getValue());
             okClicked = true;
             dialogStage.close();
         }

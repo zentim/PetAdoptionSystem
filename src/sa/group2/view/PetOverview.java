@@ -25,6 +25,8 @@ public class PetOverview {
     private Label breedLabel;
     @FXML
     private Label birthdayLabel;
+    @FXML
+    private Label petRankLabel;
 
     // Reference to the main application.
     private MainApp mainApp;
@@ -74,13 +76,14 @@ public class PetOverview {
             nameLabel.setText(pet.getName());
             breedLabel.setText(pet.getBreed());
             birthdayLabel.setText(DateUtil.format(pet.getBirthday()));
+            petRankLabel.setText(pet.getPetRankDescription());
         } else {
             // pet is null, remove all the text.
             pidLabel.setText("");
             nameLabel.setText("");
             breedLabel.setText("");
-
             birthdayLabel.setText("");
+            petRankLabel.setText("");
         }
     }
 
