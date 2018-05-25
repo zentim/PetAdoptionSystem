@@ -5,17 +5,18 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="280.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sa.group2.view.PetEditDialog">
-    <children><GridPane layoutX="-16.0" layoutY="31.0" prefHeight="200.0" prefWidth="360.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<AnchorPane prefHeight="580.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sa.group2.view.PetEditDialog">
+    <children><GridPane layoutX="-16.0" layoutY="31.0" prefHeight="200.0" prefWidth="360.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="300.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="120.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="83.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="285.0" minWidth="10.0" prefWidth="277.0" />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -27,15 +28,17 @@
         </rowConstraints>
         <children><Label text="PID" /><Label text="Name" GridPane.rowIndex="1" /><Label text="Breed" GridPane.rowIndex="2" /><Label text="Birthday" GridPane.rowIndex="3" /><TextField fx:id="petNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" /><TextField fx:id="petBreedField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="pidLabel" text="Label" GridPane.columnIndex="1" />
-            <DatePicker fx:id="petBirthdayField" prefHeight="23.0" prefWidth="239.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <DatePicker fx:id="petBirthdayField" prefHeight="23.0" prefWidth="400.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Pet Rank" GridPane.rowIndex="4" />
-            <ChoiceBox fx:id="petRankChoiceBox" prefHeight="23.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ChoiceBox fx:id="petRankChoiceBox" prefHeight="23.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         </children>
     </GridPane>
         <HBox layoutX="197.1875" layoutY="241.0" spacing="5.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
             <children><Button layoutX="197.1875" layoutY="241.0" mnemonicParsing="false" onAction="#handleOk" prefWidth="90.0" text="OK" /><Button layoutX="249.375" layoutY="241.0" mnemonicParsing="false" onAction="#handleCancel" prefWidth="90.0" text="Cancel" />
             </children>
         </HBox>
+      <ImageView fx:id="petImageView" fitHeight="250.0" fitWidth="250.0" layoutX="65.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="65.0" AnchorPane.rightAnchor="65.0" AnchorPane.topAnchor="10.0" />
+      <Button layoutX="142.0" layoutY="267.0" mnemonicParsing="false" onAction="#updatePetImage" text="Update Image" AnchorPane.leftAnchor="142.0" AnchorPane.rightAnchor="141.0" AnchorPane.topAnchor="270.0" />
     </children>
 
 </AnchorPane>

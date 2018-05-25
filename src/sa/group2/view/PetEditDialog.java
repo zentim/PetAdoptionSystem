@@ -1,12 +1,19 @@
 package sa.group2.view;
 
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
+
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.io.IOException;
 
 public class PetEditDialog {
     @FXML
@@ -19,6 +26,8 @@ public class PetEditDialog {
     private DatePicker petBirthdayField;
     @FXML
     private ChoiceBox petRankChoiceBox;
+    @FXML
+    private ImageView petImageView;
 
 
     private Stage dialogStage;
@@ -37,6 +46,22 @@ public class PetEditDialog {
                 "需要預防針500 + 結紮1000",
                 "需要預防針500 + 結紮1000 + 晶片500"
         ));
+
+//        FileChooser fileChooser = new FileChooser();
+//        fileChooser.setTitle("Open Resource File");
+//        File file = fileChooser.showOpenDialog(dialogStage);
+//        String localFilePaht = file.getAbsolutePath();
+//        String fileName = file.getName();
+
+//        System.out.println(localFilePaht);
+//        System.out.println(fileName);
+
+//        File file = new File("src/sa/group2/resources/cat.jpg");
+//        System.out.println(file.getAbsolutePath());
+
+//        Image image = new Image(file.toURI().toString());
+//        petImageView.setImage(image);
+
     }
 
     /**
@@ -61,6 +86,30 @@ public class PetEditDialog {
         petBirthdayField.setValue(pet.getBirthday());
         petBirthdayField.setPromptText("yyyy-mm-dd");
         petRankChoiceBox.getSelectionModel().select(pet.getPetRank());
+        File file = new File("src/sa/group2/resources/" + pet.getPid() + ".png");
+        Image image = new Image(file.toURI().toString());
+        petImageView.setImage(image);
+    }
+
+    @FXML
+    public void updatePetImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(dialogStage);
+//        String localFilePaht = file.getAbsolutePath();
+//        String fileName = file.getName();
+//        String ext = fileName.substring(fileName.lastIndexOf(".") + 1);
+        File outputPath = new File("src/sa/group2/resources/" + pet.getPid() + ".png");
+        Image image = new Image(file.toURI().toString());
+        if (file != null) {
+            try {
+                ImageIO.write(SwingFXUtils.fromFXImage(image,
+                        null), "png", outputPath);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        petImageView.setImage(image);
     }
 
     /**

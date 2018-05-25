@@ -5,20 +5,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import sa.group2.model.Adopter;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
 
+import java.io.File;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class AdoptionForm {
+    @FXML
+    private ImageView petImageView;
     @FXML
     private Label petNameLabel;
     @FXML
     private Label pidLabel;
+    @FXML
+    private Label petRankLabel;
 
     @FXML
     private TextField nameField;
@@ -59,8 +65,12 @@ public class AdoptionForm {
     public void setPet(Pet pet) {
         this.pet = pet;
 
+        File file = new File("src/sa/group2/resources/" + pet.getPid() + ".png");
+        Image image = new Image(file.toURI().toString());
+        petImageView.setImage(image);
         pidLabel.setText(pet.getPid());
         petNameLabel.setText(pet.getName());
+        petRankLabel.setText(pet.getPetRankDescription());
     }
 
     /**

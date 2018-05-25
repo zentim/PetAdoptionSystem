@@ -5,9 +5,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import sa.group2.MainApp;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
+
+import java.io.File;
+
 
 public class PetOverview {
     @FXML
@@ -17,6 +22,8 @@ public class PetOverview {
     @FXML
     private TableColumn<Pet, String> nameColumn;
 
+    @FXML
+    private ImageView petImageView;
     @FXML
     private Label pidLabel;
     @FXML
@@ -77,6 +84,9 @@ public class PetOverview {
             breedLabel.setText(pet.getBreed());
             birthdayLabel.setText(DateUtil.format(pet.getBirthday()));
             petRankLabel.setText(pet.getPetRankDescription());
+            File file = new File("src/sa/group2/resources/" + pet.getPid() + ".png");
+            Image image = new Image(file.toURI().toString());
+            petImageView.setImage(image);
         } else {
             // pet is null, remove all the text.
             pidLabel.setText("");

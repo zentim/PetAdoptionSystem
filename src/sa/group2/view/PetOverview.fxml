@@ -5,13 +5,14 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sa.group2.view.PetOverview">
+<SplitPane dividerPositions="0.29797979797979796" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sa.group2.view.PetOverview">
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
          <children>
@@ -31,10 +32,10 @@
                <font>
                   <Font size="18.0" />
                </font></Label>
-            <GridPane layoutX="59.0" layoutY="64.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="30.0">
+            <GridPane layoutX="59.0" layoutY="64.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="300.0">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="181.0" minWidth="10.0" prefWidth="79.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="309.0" minWidth="10.0" prefWidth="298.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -44,23 +45,24 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="PID" />
-                  <Label text="Name" GridPane.rowIndex="1" />
-                  <Label text="Breed" GridPane.rowIndex="2" />
-                  <Label text="Birthday" GridPane.rowIndex="3" />
+                  <Label text="Pet ID:" />
+                  <Label text="Pet Name:" GridPane.rowIndex="1" />
+                  <Label text="Breed:" GridPane.rowIndex="2" />
+                  <Label text="Birthday:" GridPane.rowIndex="3" />
                   <Label fx:id="pidLabel" text="Label" GridPane.columnIndex="1" />
                   <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <Label fx:id="breedLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <Label fx:id="birthdayLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label text="Pet Rank" GridPane.rowIndex="4" />
+                  <Label text="Pet Rank:" GridPane.rowIndex="4" />
                   <Label fx:id="petRankLabel" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                </children>
             </GridPane>
-            <Button layoutX="268.0" layoutY="349.0" mnemonicParsing="false" onAction="#handleAdoptPet" text="I want to adpot" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
+            <Button layoutX="133.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleAdoptPet" text="I want to adpot" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="131.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
+            <ImageView fx:id="petImageView" fitHeight="250.0" fitWidth="250.0" layoutX="84.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="84.0" AnchorPane.topAnchor="30.0" />
          </children></AnchorPane>
   </items>
 </SplitPane>

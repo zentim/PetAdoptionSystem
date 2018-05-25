@@ -1,6 +1,7 @@
 package sa.group2.model;
 
 import javafx.beans.property.*;
+import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 
