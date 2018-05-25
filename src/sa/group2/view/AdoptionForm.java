@@ -108,10 +108,13 @@ public class AdoptionForm {
         if (nameField.getText() == null || nameField.getText().length() == 0) {
             errorMessage += "No valid name!\n";
         }
-
+        
+        int year = DateUtil.parse(birthdayField.getText()).getYear();
         if (birthdayField.getValue() == null) {
             errorMessage += "No valid birthday!\n";
-        } else {
+        } else if ((2018-year)<20) {
+            	errorMessage += "age less than 20!\n";
+    	} else {
             if (!DateUtil.validDate(birthdayField.getValue().toString())) {
                 errorMessage += birthdayField.getValue().toString() + "No valid birthday. Use the format yyyy-MM-dd!\n";
             }
