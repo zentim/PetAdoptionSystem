@@ -11,6 +11,9 @@ import sa.group2.model.Adopter;
 import sa.group2.model.Pet;
 import sa.group2.util.DateUtil;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 public class AdoptionForm {
     @FXML
     private Label petNameLabel;
@@ -108,15 +111,19 @@ public class AdoptionForm {
         if (nameField.getText() == null || nameField.getText().length() == 0) {
             errorMessage += "No valid name!\n";
         }
-        
-        int year = DateUtil.parse(birthdayField.getValue().toString()).getYear();
-        if (birthdayField.getValue() == null) {
+
+        String birthday = birthdayField.getValue().toString();
+        if (birthdayField.getValue() == null || birthday.length() == 0) {
             errorMessage += "No valid birthday!\n";
-        } else if ((2018-year)<20) {
-            	errorMessage += "age less than 20!\n";
+        } else if (!DateUtil.validDate(birthday)) {
+            errorMessage += "No valid birthday. Use the format yyyy-MM-dd!\n";
     	} else {
-            if (!DateUtil.validDate(birthdayField.getValue().toString())) {
-                errorMessage += birthdayField.getValue().toString() + "No valid birthday. Use the format yyyy-MM-dd!\n";
+            int nowYear = LocalDateTime.now().getYear();
+            int birthdayYear = DateUtil.parse(birthday).getYear();
+            int age  = nowYear - birthdayYear;
+            System.out.println("birthdayYear: " + birthdayYear + " nowYear: " + nowYear + " age:" + age);
+            if (age < 20) {
+                errorMessage += "Age less than 20. Ask the legal representative as the owner.\n";
             }
         }
 
