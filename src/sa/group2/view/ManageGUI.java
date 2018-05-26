@@ -13,6 +13,7 @@ import sa.group2.util.DateUtil;
 
 import javafx.scene.image.ImageView;
 import java.io.File;
+import java.util.UUID;
 
 public class ManageGUI {
     // Pet
@@ -174,7 +175,20 @@ public class ManageGUI {
      */
     @FXML
     private void handleNewPet() {
+        int listSize = mainApp.getPetList().size();  // ex: 2
+        String tempPetID;
+        String idNumberString;
+        if (listSize != 0) {
+            String lastPetID = mainApp.getPetList().get(listSize - 1).getPid(); // ex: P0002
+            idNumberString = "" + (10000 + Integer.parseInt(lastPetID.substring(1)) + 1);  // ex: 10003
+        } else {
+            idNumberString = "" + (10000 + listSize + 1);  // ex: 10001
+        }
+        tempPetID = "P" + idNumberString.substring(1);  // ex: P0003
+//        System.out.println("temp pet id: " + tempPetID);
+
         Pet tempPet = new Pet();
+        tempPet.setPid(tempPetID);
         boolean okClicked = mainApp.showPetEditDialog(tempPet);
         if (okClicked) {
             mainApp.getPetList().add(tempPet);

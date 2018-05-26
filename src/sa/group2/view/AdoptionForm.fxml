@@ -17,7 +17,7 @@
   <items>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="266.0" prefWidth="598.0">
          <children>
-            <Label layoutX="224.0" layoutY="63.0" text="Pet's Info" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
+            <Label layoutX="224.0" layoutY="63.0" text="Pet's Information" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="20.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -45,7 +45,7 @@
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="304.0" prefWidth="598.0">
          <children>
-            <Label layoutX="60.0" layoutY="39.0" text="Adopter's Info" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+            <Label layoutX="60.0" layoutY="39.0" text="Adopter's Information" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
                <font>
                   <Font size="18.0" />
                </font>
@@ -65,7 +65,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Name:" />
+                  <Label text="Adopter name:" />
                   <Label text="Birthday:" GridPane.rowIndex="3" />
                   <Label text="Email:" GridPane.rowIndex="2" />
                   <Label text="Phone:" GridPane.rowIndex="1" />
