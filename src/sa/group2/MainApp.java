@@ -65,7 +65,7 @@ public class MainApp extends Application {
         petList.add(new Pet("P0001", "Hans"));
         petList.add(new Pet("P0002", "Ruth"));
 
-        adopterList.add(new Adopter("A001", "Mark"));
+        adopterList.add(new Adopter("A0001", "Mark"));
     }
 
     public ObservableList<Pet> getPetList() {
@@ -130,9 +130,6 @@ public class MainApp extends Application {
     }
 
     public boolean showAdoptionForm(Pet pet) {
-        Adopter adopter = new Adopter();
-        adopterList.add(adopter);
-
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
@@ -149,8 +146,8 @@ public class MainApp extends Application {
 
             // Set the adpter and the pet into the controller.
             AdoptionForm controller = loader.getController();
+            controller.setMainApp(this);
             controller.setDialogStage(formStage);
-            controller.setAdopter(adopter);
             controller.setPet(pet);
 
             // Show the dialog and wait until the user closes it
@@ -171,13 +168,13 @@ public class MainApp extends Application {
 
             // Create the dialog Stage.
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Edit Person");
+            dialogStage.setTitle("Edit Pet");
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Set the person into the controller.
+            // Set the pet into the controller.
             PetEditDialog controller = loader.getController();
             controller.setDialogStage(dialogStage);
             controller.setPet(pet);

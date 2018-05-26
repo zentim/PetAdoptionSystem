@@ -24,14 +24,14 @@ public class Adopter {
     }
 
     public Adopter(String adopterID, String name) {
-        this.adoptingPet = new SimpleStringProperty("PXXX");
+        this.adoptingPet = new SimpleStringProperty("P0001");
         this.adopterID = new SimpleStringProperty(adopterID);
         this.name = new SimpleStringProperty(name);
         this.email = new SimpleStringProperty("xxxxx@gmail.com");
         this.adopterBirthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.phone = new SimpleStringProperty("09xxxxxxxx");
         this.idCardNumber = new SimpleStringProperty("P123xxxxxx");
-        this.incomeProof = new SimpleStringProperty("some income of proof");
+        this.incomeProof = new SimpleStringProperty("A0001_incomeProof.png");
         this.appointmentTime = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.adoptionStatus = new SimpleStringProperty("Not verified");
     }

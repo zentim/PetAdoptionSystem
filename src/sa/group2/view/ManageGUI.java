@@ -1,10 +1,7 @@
 package sa.group2.view;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import sa.group2.MainApp;
 import sa.group2.model.Adopter;
@@ -13,7 +10,6 @@ import sa.group2.util.DateUtil;
 
 import javafx.scene.image.ImageView;
 import java.io.File;
-import java.util.UUID;
 
 public class ManageGUI {
     // Pet
@@ -60,12 +56,14 @@ public class ManageGUI {
     @FXML
     private Label idCardNumberLabel;
     @FXML
-    private Label incomeProofLabel;
+    private Button incomeProofButton;
     @FXML
     private Label appointmentTimeLabel;
 
     // Reference to the main application.
     private MainApp mainApp;
+
+    private Adopter adopter;
 
     /**
      * Initializes the controller class. This method is automatically called
@@ -145,6 +143,7 @@ public class ManageGUI {
 
     private void showAdopterDetails(Adopter adopter) {
         if (adopter != null) {
+            this.adopter = adopter;
             // Fill the labels with info from the adopter object.
             adoptingPetLabel.setText(adopter.getAdoptingPet());
             adopterIdLabel.setText(adopter.getAdopterID());
@@ -153,7 +152,7 @@ public class ManageGUI {
             adopterBirthdayLabel.setText(DateUtil.format(adopter.getAdopterBirthday()));
             phoneLabel.setText(adopter.getPhone());
             idCardNumberLabel.setText(adopter.getIdCardNumber());
-            incomeProofLabel.setText(adopter.getIncomeProof());
+            incomeProofButton.setText(adopter.getIncomeProof());
             appointmentTimeLabel.setText(DateUtil.format(adopter.getAppointmentTime()));
         } else {
             // adopter is null, remove all the text.
@@ -164,17 +163,18 @@ public class ManageGUI {
             adopterBirthdayLabel.setText("");
             phoneLabel.setText("");
             idCardNumberLabel.setText("");
-            incomeProofLabel.setText("");
+            incomeProofButton.setText("");
             appointmentTimeLabel.setText("");
         }
     }
 
     /**
      * Called when the user clicks the new button. Opens a dialog to edit
-     * details for a new person.
+     * details for a new pet
      */
     @FXML
     private void handleNewPet() {
+        // Set unique petID for new pet.
         int listSize = mainApp.getPetList().size();  // ex: 2
         String tempPetID;
         String idNumberString;
@@ -197,7 +197,7 @@ public class ManageGUI {
 
     /**
      * Called when the user clicks the edit button. Opens a dialog to edit
-     * details for the selected person.
+     * details for the selected pet
      */
     @FXML
     private void handleEditPet() {
@@ -261,6 +261,31 @@ public class ManageGUI {
         Adopter selectedAdopter = adopterTable.getSelectionModel().getSelectedItem();
         if (selectedAdopter != null) {
             selectedAdopter.setAdoptionStatus("fail");
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+//            alert.initOwner(mainApp.getPrimaryStage());
+            alert.setTitle("No Selection");
+            alert.setHeaderText("No Adopter Selected");
+            alert.setContentText("Please select a Adopter in the table.");
+
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    private void showIncomeProof() {
+        if (adopter != null) {
+            System.out.println(adopter.getIncomeProof());
+            File incomeProofFile = new File("src/sa/group2/resources/" + adopter.getIncomeProof());
+            Image image = new Image(incomeProofFile.toURI().toString());
+            ImageView imageView = new ImageView(image);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error", ButtonType.OK);
+            alert.setGraphic(imageView);
+            alert.setTitle(incomeProofFile.getAbsolutePath());
+            alert.setHeaderText("");
+            alert.setContentText("");
+            alert.showAndWait();
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);
