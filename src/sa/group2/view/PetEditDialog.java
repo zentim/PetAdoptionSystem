@@ -42,9 +42,9 @@ public class PetEditDialog {
     private void initialize() {
         petRankChoiceBox.setItems(FXCollections.observableArrayList(
                 "no adoption fee",
-                "需要預防針500",
-                "需要預防針500 + 結紮1000",
-                "需要預防針500 + 結紮1000 + 晶片500"
+                "need vaccination $500",
+                "need vaccination $500 + ligation $1000",
+                "need vaccination $500 + ligation $1000 + chip $500"
         ));
     }
 

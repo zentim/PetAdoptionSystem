@@ -35,13 +35,13 @@ public class Pet {
                 description = "no adoption fee";
                 break;
             case 1:
-                description = "需要預防針500";
+                description = "need vaccination $500";
                 break;
             case 2:
-                description = "需要預防針500 + 結紮1000";
+                description = "need vaccination $500 + ligation $1000";
                 break;
             case 3:
-                description = "需要預防針500 + 結紮1000 + 晶片500";
+                description = "need vaccination $500 + ligation $1000 + chip $500";
                 break;
             default:
                 description = "not valid pet rank";
