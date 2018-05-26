@@ -1,7 +1,6 @@
 package sa.group2.model;
 
 import javafx.beans.property.*;
-import javafx.scene.image.Image;
 
 import java.time.LocalDate;
 
@@ -21,12 +20,12 @@ public class Pet {
         this.pid = new SimpleStringProperty(pid);
 
         // Some initial dummy data, just for testing.
-        this.breed = new SimpleStringProperty("some breed");
+        this.breed = new SimpleStringProperty("dog");
         this.birthday = new SimpleObjectProperty<LocalDate>(LocalDate.of(2018, 5, 22));
         this.petRank = new SimpleIntegerProperty(0);
     }
 
-    // pet rank description
+    // Pet rank description
     public String getPetRankDescription() {
         int rank = Integer.parseInt(this.petRank.getValue().toString());
         String description = "";
@@ -54,7 +53,6 @@ public class Pet {
     /*
     Getter and Setter
      */
-
     public String getPid() {
         return pid.get();
     }

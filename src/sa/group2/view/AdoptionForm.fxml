@@ -81,7 +81,7 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                      <children>
                         <Button maxWidth="100.0" mnemonicParsing="false" onAction="#uploadIncomeProofImage" prefHeight="30.0" text="Upload Image" />
-                        <Label fx:id="incomeProofLabel" prefHeight="30.0" text="Label" />
+                        <Label fx:id="incomeProofLabel" prefHeight="30.0" text="no image!" />
                      </children>
                   </HBox>
                </children>

@@ -99,7 +99,7 @@ public class PetOverview {
 
     /**
      * Called when the user clicks the adopt button. Opens a dialog to fill in adopter's
-     * information for the selected pet.
+     * information for adopting the selected pet.
      */
     @FXML
     private void handleAdoptPet() {
@@ -109,7 +109,6 @@ public class PetOverview {
             if (okClicked) {
                 showPetDetails(selectedPet);
             }
-
         } else {
             // Nothing selected.
             Alert alert = new Alert(Alert.AlertType.WARNING);

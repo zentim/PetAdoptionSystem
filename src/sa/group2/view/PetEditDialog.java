@@ -46,22 +46,6 @@ public class PetEditDialog {
                 "需要預防針500 + 結紮1000",
                 "需要預防針500 + 結紮1000 + 晶片500"
         ));
-
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Open Resource File");
-//        File file = fileChooser.showOpenDialog(dialogStage);
-//        String localFilePaht = file.getAbsolutePath();
-//        String fileName = file.getName();
-
-//        System.out.println(localFilePaht);
-//        System.out.println(fileName);
-
-//        File file = new File("src/sa/group2/resources/cat.jpg");
-//        System.out.println(file.getAbsolutePath());
-
-//        Image image = new Image(file.toURI().toString());
-//        petImageView.setImage(image);
-
     }
 
     /**
@@ -91,6 +75,9 @@ public class PetEditDialog {
         petImageView.setImage(image);
     }
 
+    /**
+     *  Set the pet's image
+     */
     @FXML
     public void updatePetImage() {
         FileChooser fileChooser = new FileChooser();
@@ -145,7 +132,7 @@ public class PetEditDialog {
     }
 
     /**
-     * Validates the user input in the text fields.
+     * Validates the user input.
      *
      * @return true if the input is valid
      */

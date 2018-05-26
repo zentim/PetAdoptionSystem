@@ -50,12 +50,10 @@ public class MainApp extends Application {
         }
     }
 
-
-
+    // Main
     public static void main(String[] args) {
         launch(args);
     }
-
 
     /**
      * Constructor
@@ -75,6 +73,9 @@ public class MainApp extends Application {
         return adopterList;
     }
 
+    /**
+     *  This GUI is for Adopter.
+     */
     @FXML
     public void showPetOverview() {
         try {
@@ -102,6 +103,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     *  This GUI is for Manager.
+     */
     @FXML
     public void showManageGUI() {
         try {
@@ -129,6 +133,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     *  Adopter can open adoption form for adopting.
+     */
     public boolean showAdoptionForm(Pet pet) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
@@ -159,6 +166,9 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Manager can open pet information edit page.
+     */
     public boolean showPetEditDialog(Pet pet) {
         try {
             // Load the fxml file and create a new stage for the popup dialog.

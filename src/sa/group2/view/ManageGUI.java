@@ -239,6 +239,9 @@ public class ManageGUI {
         }
     }
 
+    /**
+     *  Set adopter's adoption status. to "success"
+     */
     @FXML
     private void handleVerifySucess() {
         Adopter selectedAdopter = adopterTable.getSelectionModel().getSelectedItem();
@@ -256,6 +259,9 @@ public class ManageGUI {
         }
     }
 
+    /**
+     *  Set adopter's adoption status. to "fail"
+     */
     @FXML
     private void handleVerifyFail() {
         Adopter selectedAdopter = adopterTable.getSelectionModel().getSelectedItem();
@@ -273,6 +279,9 @@ public class ManageGUI {
         }
     }
 
+    /**
+     *  Show the file of  income from adopter.
+     */
     @FXML
     private void showIncomeProof() {
         if (adopter != null) {
